@@ -7,8 +7,8 @@ class Pie
   @all: (callback) ->
     redis.hgetall Pie.key(), (err, objects) ->
       pies = []
-      for key, value of objects
-        pie = new Pie JSON.parse(value)
+      for id, json of objects
+        pie = new Pie JSON.parse(json)
         pies.push pie
       callback null, pies
   @active: (callback) ->
